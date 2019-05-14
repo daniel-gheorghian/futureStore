@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+    <div class="list-group">
+        <div class="list-group-item">
+            <h3>{{item.itemDescription}} <i class="pull-right">{{item.price | currency}}</i></h3>
+            <div class="text-center">
+                <img src="http://lorempixel.com/400/200/abstract/" class="img-thumbnail" alt="Item thumbnail"/>
+            </div>
+
+            <div class="panel-body">
+                <ul class="nav nav-pills">
+                    <li ng-class="{active: isActiveTab(1)}">
+                        <a href="" ng-click="setActiveTab(1)">Description</a>
+                    </li>
+                    <li ng-class="{active: isActiveTab(2)}">
+                        <a href="" ng-click="setActiveTab(2)">Specs</a>
+                    </li>
+                    <li ng-class="{active: isActiveTab(3)}">
+                        <a href="" ng-click="setActiveTab(3)">Reviews</a>
+                    </li>
+                </ul>
+
+                <div style="margin-top: 20px;">
+                    <blockquote ng-show="isActiveTab(1)">{{item.itemDescription}}</blockquote>
+
+                    <div ng-show="isActiveTab(2)">
+                        <ul class="list-group">
+                            <li ng-repeat="spec in item.specs" class="list-group-item">
+                                <strong>{{spec}}</strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div ng-show="isActiveTab(3)">
+                        <ul class="list-group">
+                            <li ng-repeat="rating in item.reviews" class="list-group-item">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success"
+                                         role="progressbar"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         aria-valuenow="{{rating}}"
+                                         ng-style="{'width': '{{rating}}%'}">
+                                        {{rating}}%
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
