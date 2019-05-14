@@ -1,0 +1,38 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+/log
+/src/main/java/com/mind/csr/core/facade/endpoint/*.class
+
+
+*.log
+.DS_Store
+~*
+*.bak
+node
+node_modules
+bower_components
+.metadata/
+RemoteSystemsTempFiles/.project
+coverage/

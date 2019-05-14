@@ -1,0 +1,13 @@
+{
+  "name": "future_store",
+  "version": "0.0.1-SNAPSHOT",
+  "dependencies": {
+    "express": "*",
+    "morgan": "*",
+    "express-http-proxy": "*"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js"
+}
