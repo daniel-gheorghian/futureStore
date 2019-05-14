@@ -18,20 +18,6 @@
                 specs: ['Accurate time piece', 'Pleasant fragrance', 'Available in Misty Black and Bright White'],
                 reviews: [60, 70, 30, 99, 80, 72]
             }];
-
-        $scope.activeTab = 1;
-        $scope.isActiveTab = isActiveTab;
-        $scope.setActiveTab = setActiveTab;
-
-        function isActiveTab ( tabNo )
-        {
-            return $scope.activeTab === tabNo;
-        }
-
-        function setActiveTab ( tabNo )
-        {
-            $scope.activeTab = tabNo;
-        }
     }
 
     angular.module( "FutureStore" ).controller( "CatalogController",
