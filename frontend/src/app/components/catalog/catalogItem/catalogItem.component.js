@@ -6,7 +6,7 @@
         bindings   : {
             item: '<'
         },
-        templateUrl: 'app/components/catalogItem/catalogItem.html',
+        templateUrl: 'app/components/catalog/catalogItem/catalogItem.html',
         controller : CatalogItemController
     };
 

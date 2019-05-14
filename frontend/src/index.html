@@ -6,8 +6,8 @@
         <script type="text/javascript" src="assets/lib/angular.1.7.5/angular.min.js"></script>
 
         <script type="text/javascript" src="app/app.module.js"></script>
-        <script type="text/javascript" src="app/catalogController.js"></script>
-        <script type="text/javascript" src="app/components/catalogItem/catalogItem.component.js"></script>
+        <script type="text/javascript" src="app/components/catalog/catalogItem/catalogItem.component.js"></script>
+        <script type="text/javascript" src="app/components/catalog/catalogItemList/catalogItemList.component.js"></script>
 
         <link rel="stylesheet" href="assets/lib/bootstrap.3.3.6/css/bootstrap.css"/>
     </head>
@@ -18,28 +18,6 @@
             <h2 class="text-center">- an Angular product -</h2>
         </div>
 
-        <div class="row" style="padding: 20px 0 20px 0">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <div class="input-group">
-                    <input type="text" name="searchInput" class="form-control" placeholder="Search the catalog"
-                           ng-model="searchText">
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-sm-4"></div>
-        </div>
-
-        <div class="row" ng-controller="CatalogController">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <catalog-item ng-repeat="item in catalog | filter: searchText" item="item"></catalog-item>
-            </div>
-            <div class="col-sm-4"></div>
-        </div>
+        <catalog-item-list></catalog-item-list>
     </body>
 </html>

@@ -1,0 +1,23 @@
+<div class="row" style="padding: 20px 0 20px 0">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div class="input-group">
+            <input type="text" name="searchInput" class="form-control" placeholder="Search the catalog"
+                   ng-model="searchText">
+            <span class="input-group-btn">
+                <button class="btn btn-info" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <catalog-item ng-repeat="item in $ctrl.catalog | filter: searchText" item="item"></catalog-item>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
