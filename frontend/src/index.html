@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="FutureStore">
 	<head>
-		<script type="text/javascript" src="assets/lib/angular.1.7.5/angular.min.js"></script>
-        <link rel="stylesheet" href="assets/lib/bootstrap.3.3.6/css/bootstrap.css"/>
         <title>Future Store</title>
+
+		<script type="text/javascript" src="assets/lib/angular.1.7.5/angular.min.js"></script>
+
+        <script type="text/javascript" src="app/app.module.js"></script>
+        <script type="text/javascript" src="app/catalogController.js"></script>
+
+        <link rel="stylesheet" href="assets/lib/bootstrap.3.3.6/css/bootstrap.css"/>
     </head>
 	<body class="container-fluid">
 
@@ -27,7 +32,7 @@
 			<div class="col-sm-4"></div>
 		</div>
 
-		<div class="row" ng-init="catalog=[{'itemDescription':'Mist Pods','price':500},{'itemDescription':'Pineapple Watch','price':300}];">
+		<div class="row" ng-controller="CatalogController">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<div class="panel panel-default" ng-repeat="item in catalog | filter: searchText">
