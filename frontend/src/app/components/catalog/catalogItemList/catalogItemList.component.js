@@ -8,24 +8,18 @@
         controller : CatalogItemListController
     };
 
-    function CatalogItemListController ()
+    CatalogItemListController.$inject = ["$http"];
+
+    function CatalogItemListController ( $http )
     {
         var ctrl = this;
 
         ctrl.$onInit = function ()
         {
-            ctrl.catalog = [
-                {
-                    itemDescription: 'Mist Pods',
-                    price          : 500,
-                    specs          : ['Comfortable to wear', 'Almost no weight', 'High fidelity', 'Available in Misty Black and Bright White'],
-                    reviews        : [100, 80, 99, 110]
-                }, {
-                    itemDescription: 'Pineapple Watch',
-                    price          : 300,
-                    specs          : ['Accurate time piece', 'Pleasant fragrance', 'Available in Misty Black and Bright White'],
-                    reviews        : [60, 70, 30, 99, 80, 72]
-                }];
+            $http.get( "/api/catalog" ).then( function ( res )
+                                              {
+                                                  ctrl.catalog = res.data;
+                                              } );
         };
     }
 
