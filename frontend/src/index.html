@@ -16,13 +16,14 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
                 <div class="input-group">
-                    <input type="text" name="searchInput" class="form-control" placeholder="Search the catalog">
+                    <input type="text" name="searchInput" class="form-control" placeholder="Search the catalog" ng-model="searchText">
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
                 </div>
+                {{searchText}}
             </div>
 			<div class="col-sm-4"></div>
 		</div>
