@@ -33,7 +33,7 @@
 				<div class="panel panel-default" ng-repeat="item in catalog | filter: searchText">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <h3>{{item.itemDescription}} <i class="pull-right">{{item.price}}</i></h3>
+                            <h3>{{item.itemDescription}} <i class="pull-right">{{item.price | currency}}</i></h3>
                             <div class="text-center">
                                 <img src="http://lorempixel.com/400/200/abstract/" class="img-thumbnail" alt="Item thumbnail"/>
                             </div>
