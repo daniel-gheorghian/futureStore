@@ -23,7 +23,6 @@
                         </button>
                     </span>
                 </div>
-                {{searchText}}
             </div>
 			<div class="col-sm-4"></div>
 		</div>
@@ -31,7 +30,7 @@
 		<div class="row" ng-init="catalog=[{'itemDescription':'Mist Pods','price':500},{'itemDescription':'Pineapple Watch','price':300}];">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
-				<div class="panel panel-default" ng-repeat="item in catalog">
+				<div class="panel panel-default" ng-repeat="item in catalog | filter: searchText">
                     <div class="list-group">
                         <div class="list-group-item">
                             <h3>{{item.itemDescription}} <i class="pull-right">{{item.price}}</i></h3>
