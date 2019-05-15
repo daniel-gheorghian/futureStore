@@ -27,25 +27,7 @@
 
         function onAddToCart ( $event )
         {
-            CartService.createCart( "123", "Iasi1" )
-                       .then( addItemToCart.bind( null, $event.item ) )
-                       .then( CartService.updateCart );
-        }
-
-        function addItemToCart ( item, response )
-        {
-            var cart = response.data;
-
-            cart.items = [];
-            cart.items.push( {
-                                 "itemCode"       : item.itemCode,
-                                 "itemDescription": item.itemDescription,
-                                 "itemType"       : item.itemType,
-                                 "price"          : item.price,
-                                 "quantity"       : 1
-                             } );
-
-            return cart;
+            CartService.addToCart( $event.item );
         }
     }
 
@@ -57,6 +39,9 @@
                               {
                                   url      : '/',
                                   component: 'catalogItemList',
+                                  params   : {
+                                      cart: null
+                                  },
                                   resolve  : {
                                       items: resolveItems
                                   }
