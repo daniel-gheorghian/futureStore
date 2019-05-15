@@ -15,15 +15,15 @@ public class CartController
     private CartService cartService;
 
     @RequestMapping( method = RequestMethod.GET )
-    public Iterable<Cart> findAll(  )
+    public Iterable<Cart> findAll( )
     {
-        return cartService.findAllCarts();
+        return cartService.findAllCarts( );
     }
 
     @RequestMapping( method = RequestMethod.POST )
-    public ResponseEntity<Long> addCart( @RequestBody Cart cart )
+    public Cart addCart( @RequestBody Cart cart )
     {
-        return new ResponseEntity<>( cartService.addCart( cart ), HttpStatus.OK );
+        return cartService.addCart( cart );
     }
 
     @RequestMapping( method = RequestMethod.GET, value = "/{cartId}" )

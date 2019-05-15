@@ -15,11 +15,11 @@ public class CartService
     @Autowired
     private CartRepository cartRepository;
 
-    public long addCart( Cart cart )
+    public Cart addCart( Cart cart )
     {
         Cart savedCart = cartRepository.save( cart );
 
-        return savedCart.getId( );
+        return savedCart;
     }
 
     public Cart findCartById( long id )
@@ -35,6 +35,7 @@ public class CartService
         oldCart.setAccountCode( newCart.getAccountCode( ) );
         oldCart.setStatus( newCart.getStatus( ) );
         oldCart.setStore( newCart.getStore( ) );
+        oldCart.setItems( newCart.getItems( ) );
 
         return cartRepository.save( oldCart );
     }
@@ -53,8 +54,8 @@ public class CartService
         cartRepository.deleteById( id );
     }
 
-    public Iterable<Cart> findAllCarts()
+    public Iterable<Cart> findAllCarts( )
     {
-        return cartRepository.findAll();
+        return cartRepository.findAll( );
     }
 }

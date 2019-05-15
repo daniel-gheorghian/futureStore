@@ -1,6 +1,10 @@
 package com.mind.training.futureStore.cart.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.mind.training.futureStore.catalog.entity.CatalogItemReview;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -27,6 +31,10 @@ public class Cart
     @Column
     @Basic( optional = false )
     private String store;
+
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "cart" )
+    @JsonManagedReference
+    private List<CartItems> items;
 
     public Long getId( )
     {
@@ -66,6 +74,16 @@ public class Cart
     public void setStore( String store )
     {
         this.store = store;
+    }
+
+    public List<CartItems> getItems( )
+    {
+        return items;
+    }
+
+    public void setItems( List<CartItems> items )
+    {
+        this.items = items;
     }
 
     @Override

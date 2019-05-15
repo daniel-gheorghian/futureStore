@@ -8,19 +8,43 @@
         controller : CatalogItemListController
     };
 
-    CatalogItemListController.$inject = ["$http"];
+    CatalogItemListController.$inject = ["CatalogService", "CartService"];
 
-    function CatalogItemListController ( $http )
+    function CatalogItemListController ( CatalogService, CartService )
     {
         var ctrl = this;
 
+        ctrl.onAddToCart = onAddToCart;
         ctrl.$onInit = function ()
         {
-            $http.get( "/api/catalog" ).then( function ( res )
-                                              {
-                                                  ctrl.catalog = res.data;
-                                              } );
+            CatalogService.loadItems().then( function ( res )
+                                             {
+                                                 ctrl.catalog = res.data;
+                                             } );
         };
+
+        function onAddToCart ( $event )
+        {
+            CartService.createCart( "123", "Iasi1" )
+                       .then( addItemToCart.bind( null, $event.item ) )
+                       .then( CartService.updateCart );
+        }
+
+        function addItemToCart ( item, response )
+        {
+            var cart = response.data;
+
+            cart.items = [];
+            cart.items.push( {
+                                 "itemCode"       : item.itemCode,
+                                 "itemDescription": item.itemDescription,
+                                 "itemType"       : item.itemType,
+                                 "price"          : item.price,
+                                 "quantity"       : 1
+                             } );
+
+            return cart;
+        }
     }
 
     angular.module( "FutureStore" )

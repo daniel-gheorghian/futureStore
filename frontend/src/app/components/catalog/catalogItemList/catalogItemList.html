@@ -17,7 +17,10 @@
 <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
-        <catalog-item ng-repeat="item in $ctrl.catalog | filter: searchText" item="item"></catalog-item>
+        <catalog-item ng-repeat="item in $ctrl.catalog | filter: searchText"
+                      data-item="item"
+                      data-on-add-to-cart="$ctrl.onAddToCart($event)">
+        </catalog-item>
     </div>
     <div class="col-sm-4"></div>
 </div>

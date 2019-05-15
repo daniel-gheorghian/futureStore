@@ -4,7 +4,8 @@
 
     var CatalogItemComponent = {
         bindings   : {
-            item: '<'
+            item       : '<',
+            onAddToCart: '&'
         },
         templateUrl: 'app/components/catalog/catalogItem/catalogItem.html',
         controller : CatalogItemController
@@ -12,7 +13,7 @@
 
     CatalogItemController.$inject = [];
 
-    function CatalogItemController (  )
+    function CatalogItemController ()
     {
         var ctrl = this;
 
@@ -27,6 +28,7 @@
         ctrl.activeTab = 1;
         ctrl.isActiveTab = isActiveTab;
         ctrl.setActiveTab = setActiveTab;
+        ctrl.onClickAddToCart = onClickAddToCart;
 
         function isActiveTab ( tabNo )
         {
@@ -36,6 +38,11 @@
         function setActiveTab ( tabNo )
         {
             ctrl.activeTab = tabNo;
+        }
+
+        function onClickAddToCart ()
+        {
+            ctrl.onAddToCart( { "$event": { "item": ctrl.item } } );
         }
     }
 
