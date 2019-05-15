@@ -4,8 +4,12 @@
         <title>Future Store</title>
 
         <script type="text/javascript" src="assets/lib/angular.1.7.5/angular.min.js"></script>
+        <script type="text/javascript" src="assets/lib/ui-router.1.0.20/ui-router-core.min.js"></script>
+        <script type="text/javascript" src="assets/lib/ui-router.1.0.20/ui-router-angularjs.min.js"></script>
 
         <script type="text/javascript" src="app/app.module.js"></script>
+        <script type="text/javascript" src="app/app.route.js"></script>
+
         <script type="text/javascript" src="app/components/catalog/catalog.service.js"></script>
         <script type="text/javascript" src="app/components/catalog/catalogItem/catalogItem.component.js"></script>
         <script type="text/javascript" src="app/components/catalog/catalogItemList/catalogItemList.component.js"></script>
@@ -20,6 +24,6 @@
             <h2 class="text-center">- an Angular product -</h2>
         </div>
 
-        <catalog-item-list></catalog-item-list>
+        <ui-view></ui-view>
     </body>
 </html>

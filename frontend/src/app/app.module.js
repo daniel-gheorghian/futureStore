@@ -1,1 +1,1 @@
-angular.module( "FutureStore", [] );
+angular.module( "FutureStore", ["ui.router"] );

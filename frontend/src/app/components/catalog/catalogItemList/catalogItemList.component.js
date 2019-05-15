@@ -3,24 +3,26 @@
     "use strict";
 
     var CatalogItemListComponent = {
-        bindings   : {},
+        bindings   : {
+            items: '<'
+        },
         templateUrl: 'app/components/catalog/catalogItemList/catalogItemList.html',
         controller : CatalogItemListController
     };
 
-    CatalogItemListController.$inject = ["CatalogService", "CartService"];
+    CatalogItemListController.$inject = ["CartService"];
 
-    function CatalogItemListController ( CatalogService, CartService )
+    function CatalogItemListController ( CartService )
     {
         var ctrl = this;
 
         ctrl.onAddToCart = onAddToCart;
-        ctrl.$onInit = function ()
+        ctrl.$onChanges = function ( changes )
         {
-            CatalogService.loadItems().then( function ( res )
-                                             {
-                                                 ctrl.catalog = res.data;
-                                             } );
+            if ( changes.items )
+            {
+                ctrl.items = angular.copy( ctrl.items );
+            }
         };
 
         function onAddToCart ( $event )
@@ -47,6 +49,28 @@
         }
     }
 
+    catalogItemListConfig.$inject = ["$stateProvider"];
+
+    function catalogItemListConfig ( $stateProvider )
+    {
+        $stateProvider.state( 'catalogItemList.view',
+                              {
+                                  url      : '/',
+                                  component: 'catalogItemList',
+                                  resolve  : {
+                                      items: resolveItems
+                                  }
+                              } );
+
+        resolveItems.$inject = ["catalogItems"];
+
+        function resolveItems ( catalogItems )
+        {
+            return catalogItems;
+        }
+    }
+
     angular.module( "FutureStore" )
-           .component( "catalogItemList", CatalogItemListComponent );
+           .component( "catalogItemList", CatalogItemListComponent )
+           .config( catalogItemListConfig );
 })();
