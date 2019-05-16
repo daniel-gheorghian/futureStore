@@ -6,9 +6,9 @@
 
     function States ( $stateProvider, $urlRouterProvider )
     {
-        $urlRouterProvider.otherwise( "catalogItemList/" );
+        $urlRouterProvider.otherwise( "store/catalogItemList/" );
 
-        $stateProvider.state( 'catalogItemList',
+        $stateProvider.state( 'store.catalogItemList',
                               {
                                   abstract: true,
                                   url     : '/catalogItemList',

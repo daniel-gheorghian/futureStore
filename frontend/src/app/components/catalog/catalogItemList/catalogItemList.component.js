@@ -4,7 +4,8 @@
 
     var CatalogItemListComponent = {
         bindings   : {
-            items: '<'
+            items      : '<',
+            onAddToCart: '&'
         },
         templateUrl: 'app/components/catalog/catalogItemList/catalogItemList.html',
         controller : CatalogItemListController
@@ -16,7 +17,6 @@
     {
         var ctrl = this;
 
-        ctrl.onAddToCart = onAddToCart;
         ctrl.$onChanges = function ( changes )
         {
             if ( changes.items )
@@ -25,25 +25,26 @@
             }
         };
 
-        function onAddToCart ( $event )
+        ctrl.onAddItemToCart = function ( $event )
         {
-            CartService.addToCart( $event.item );
-        }
+            ctrl.onAddToCart( { "$event": $event } );
+        };
     }
 
     catalogItemListConfig.$inject = ["$stateProvider"];
 
     function catalogItemListConfig ( $stateProvider )
     {
-        $stateProvider.state( 'catalogItemList.view',
+        $stateProvider.state( 'store.catalogItemList.view',
                               {
-                                  url      : '/',
-                                  component: 'catalogItemList',
-                                  params   : {
-                                      cart: null
-                                  },
-                                  resolve  : {
+                                  url: '/',
+                                  resolve: {
                                       items: resolveItems
+                                  },
+                                  views  : {
+                                      "$default@^.^": {
+                                          component: 'catalogItemList'
+                                      }
                                   }
                               } );
 

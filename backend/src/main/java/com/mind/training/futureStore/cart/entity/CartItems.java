@@ -36,6 +36,16 @@ public class CartItems
     @Basic( optional = false )
     private BigDecimal price;
 
+    public Long getId( )
+    {
+        return id;
+    }
+
+    public void setId( Long id )
+    {
+        this.id = id;
+    }
+
     @ManyToOne
     @JsonBackReference
     private Cart cart;
@@ -113,6 +123,7 @@ public class CartItems
         }
         CartItems cartItems = (CartItems)o;
         return quantity == cartItems.quantity &&
+               Objects.equals( id, cartItems.id ) &&
                Objects.equals( itemType, cartItems.itemType ) &&
                Objects.equals( itemCode, cartItems.itemCode ) &&
                Objects.equals( itemDescription, cartItems.itemDescription ) &&
@@ -122,7 +133,7 @@ public class CartItems
     @Override
     public int hashCode( )
     {
-        return Objects.hash( itemType, itemCode, itemDescription, quantity, price );
+        return Objects.hash( id, itemType, itemCode, itemDescription, quantity, price );
     }
 
     @Override

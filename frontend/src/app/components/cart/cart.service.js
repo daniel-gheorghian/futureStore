@@ -2,11 +2,13 @@
 {
     "use strict";
 
-    CartService.$inject = ["$http", "$stateParams", "$q", "$state"];
+    CartService.$inject = ["$http", "$state"];
 
-    function CartService ( $http, $stateParams, $q, $state )
+    function CartService ( $http, $state )
     {
         this.addToCart = addToCart;
+        this.createCart = createCart;
+        this.loadCart = loadCart;
 
         function createCart ( accountCode, store )
         {
@@ -22,28 +24,16 @@
             return $http.put( "/api/cart/" + cart.id, cart );
         }
 
-        function addToCart ( item )
+        function loadCart ( cartId )
         {
-            getCart().then( addItemToCart.bind( null, item ) )
-                     .then( updateCart )
-                     .then( viewCart );
+            return $http.get( "/api/cart/" + cartId );
         }
 
-        function getCart ()
+        function addToCart ( item, cart )
         {
-            if ( $stateParams.cart === null )
-            {
-                return createCart( "123", "Iasi1" ).then( function ( response )
-                                                          {
-                                                              var cart = response.data;
-                                                              cart.items = [];
-                                                              return cart;
-                                                          } );
-            }
-            else
-            {
-                return $q.resolve( $stateParams.cart );
-            }
+            addItemToCart( item, cart );
+
+            return updateCart( cart );
         }
 
         function addItemToCart ( item, cart )
@@ -57,11 +47,6 @@
                              } );
 
             return cart;
-        }
-
-        function viewCart ( response )
-        {
-            $state.go( "cart", { "cart": response.data } );
         }
     }
 

@@ -28,7 +28,7 @@
 
         function backToCatalog ()
         {
-            $state.go( "catalogItemList.view", { "cart": ctrl.cart } );
+            $state.go( "store.catalogItemList.view" );
         }
 
         function cartGrandTotal ()
@@ -46,24 +46,11 @@
 
     function cartConfig ( $stateProvider )
     {
-        $stateProvider.state( 'cart',
+        $stateProvider.state( 'store.cart',
                               {
                                   url      : '/cart',
-                                  component: 'cart',
-                                  params   : {
-                                      cart: null
-                                  },
-                                  resolve  : {
-                                      cart: resolveCart
-                                  }
+                                  component: 'cart'
                               } );
-
-        resolveCart.$inject = ["$stateParams"];
-
-        function resolveCart ( $stateParams )
-        {
-            return $stateParams.cart;
-        }
     }
 
     angular.module( "FutureStore" )
